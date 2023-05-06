@@ -9,6 +9,7 @@ import { BodyComponent } from './components/body/body.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 //Immports for Screens
 import { HomeComponent } from './screens/home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HomeComponent } from './screens/home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
