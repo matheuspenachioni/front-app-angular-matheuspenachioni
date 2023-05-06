@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './screens/home/home.component';
 //Customer Routes
 import { CustomerListComponent } from './screens/customer/customer-list/customer-list.component';
+import { CustomerCreateComponent } from './screens/customer/customer-create/customer-create.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   //Customer Routes
-  { path: 'customer', component: CustomerListComponent}
+  { path: 'customer', component: CustomerListComponent },
+  { path: 'customer/add', component: CustomerCreateComponent }
 ];
 
 @NgModule({

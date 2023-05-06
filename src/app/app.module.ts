@@ -29,6 +29,7 @@ import { HomeComponent } from './screens/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomerListComponent } from './screens/customer/customer-list/customer-list.component';
 import { CustomerService } from './services/customer.service';
+import { CustomerCreateComponent } from './screens/customer/customer-create/customer-create.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { CustomerService } from './services/customer.service';
     BodyComponent,
     SidenavComponent,
     HomeComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    CustomerCreateComponent
   ],
   imports: [
     BrowserModule,

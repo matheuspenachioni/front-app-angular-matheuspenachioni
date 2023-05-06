@@ -1,0 +1,74 @@
+<mat-toolbar color="primary">
+    <span>Novo Cliente</span>
+</mat-toolbar>
+
+<div class="container mat-elevation-z8">
+    <h1 class="text-center">Preencha todos os campos</h1>
+    <mat-divider></mat-divider>
+    <form>
+        <mat-form-field class="full-width">
+            <mat-label>Primeiro Nome</mat-label>
+            <input [(ngModel)]="customer.firstNameCustomer" [formControl]="firstNameCustomer" name="firstNameCustomer"
+                matInput placeholder="Ex. Matheus" required />
+            <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Último Nome</mat-label>
+            <input [(ngModel)]="customer.lastNameCustomer" [formControl]="lastNameCustomer" name="lastNameCustomer"
+                matInput placeholder="Ex. Penachioni" required />
+            <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>CPF</mat-label>
+            <input [(ngModel)]="customer.cpfCustomer" [formControl]="cpfCustomer" name="cpfCustomer" matInput
+                mask="000.000.000-00" placeholder="Ex. 111.222.333-44" required />
+            <mat-icon matSuffix>fingerprint</mat-icon>
+        </mat-form-field>
+
+        <!-- Ainda não é feita a validação de data mínima e data máxima, ou seja, podemos adicionar a data do Boer (01/01/9999 a.C.) -->
+        <mat-form-field class="full-width">
+            <mat-label>Data de Nascimento</mat-label>
+            <input [(ngModel)]="customer.birthdateCustomer" name="birthdateCustomer" type="date" matInput required />
+            <mat-icon matSuffix>calendar_month</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <span matTextPrefix class="money-prefix">R$</span>
+            <mat-label>Renda Mensal</mat-label>
+            <input [(ngModel)]="customer.monthlyIncomeCustomer" [formControl]="monthlyIncomeCustomer"
+                name="monthlyIncomeCustomer" type="number" matInput placeholder="Ex. 2.000" required />
+            <mat-icon matSuffix>paid</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>E-mail</mat-label>
+            <input [(ngModel)]="customer.emailCustomer" [formControl]="emailCustomer" name="emailCustomer" type="email"
+                matInput placeholder="Ex. math@mail.com" required />
+            <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Senha</mat-label>
+            <input [(ngModel)]="customer.passwordCustomer" [formControl]="passwordCustomer" name="passwordCustomer"
+                type="password" matInput placeholder="Ex. math1234" [type]="hide ? 'password' : 'text'" required />
+            <mat-icon matSuffix class="password-visibility" (click)="toggleVisibility()">
+                {{hide ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+        </mat-form-field>
+
+        <div class="group-buttons">
+            <button (click)="createCustomer()" [disabled]="!validateFields()" mat-fab extended color="primary"
+                class="form-button">
+                <mat-icon>save</mat-icon>
+                Cadastrar
+            </button>
+
+            <button (click)="clearFields()" mat-fab extended color="warn" class="form-button">
+                <mat-icon>rotate_right</mat-icon>
+                Limpar campos
+            </button>
+        </div>
+    </form>
+</div>
