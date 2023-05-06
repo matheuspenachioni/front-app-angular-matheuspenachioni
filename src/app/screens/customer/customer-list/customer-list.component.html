@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+    <span>Lista de Clientes</span>
+</mat-toolbar>
+
+<div class="container">
+    <mat-form-field appearance="fill" class="input-search">
+        <mat-label>Pesquisar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Matheus" #input>
+    </mat-form-field>
+
+    <div class="button-group">
+        <button mat-raised-button color="primary" routerLink="add">Novo cliente</button>
+        <button mat-raised-button color="primary" routerLink="report">Relatório</button>
+    </div>
+
+    <div class="mat-elevation-z8">
+        <mat-table class="mat-table" [dataSource]="dataSource" matTableResponsive>
+            <ng-container matColumnDef="idCustomer">
+                <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="idCustomer">
+                    #{{element.idCustomer}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="firstNameCustomer">
+                <mat-header-cell *matHeaderCellDef> Nome Completo </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="firstNameCustomer">
+                    {{element.firstNameCustomer}} {{element.lastNameCustomer}}
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="cpfCustomer">
+                <mat-header-cell *matHeaderCellDef> CPF </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="cpfCustomer"> 
+                    {{ element.cpfCustomer | mask: '000.000.000-00' }} 
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="monthlyIncomeCustomer">
+                <mat-header-cell *matHeaderCellDef> Renda Mensal </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="monthlyIncomeCustomer">
+                    R$ {{element.monthlyIncomeCustomer}} 
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="emailCustomer">
+                <mat-header-cell *matHeaderCellDef> E-mail </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="emailCustomer"> 
+                    {{element.emailCustomer}} 
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator>
+    </div>
+
+</div>
