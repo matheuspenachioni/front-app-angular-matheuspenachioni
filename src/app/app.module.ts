@@ -15,6 +15,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 //Outros Imports
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
@@ -27,6 +28,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 //Imports para as Screens
 import { HomeComponent } from './screens/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//Imports para Customer
 import { CustomerListComponent } from './screens/customer/customer-list/customer-list.component';
 import { CustomerService } from './services/customer.service';
 import { CustomerCreateComponent } from './screens/customer/customer-create/customer-create.component';
@@ -54,6 +56,7 @@ import { CustomerCreateComponent } from './screens/customer/customer-create/cust
     MatListModule,
     MatIconModule,
     MatPaginatorModule,
+    MatDatepickerModule,
     FormsModule, ReactiveFormsModule,
     HttpClientModule,
     DatePipe,

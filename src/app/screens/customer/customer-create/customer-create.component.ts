@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { provideNgxMask } from 'ngx-mask';
@@ -13,16 +13,20 @@ import { Customer } from 'src/app/models/customer';
   styleUrls: ['./customer-create.component.css'],
   providers: [
     provideNgxMask()
-],
+  ]
 })
 export class CustomerCreateComponent implements OnInit {
   constructor(
     private toast: ToastrService,
     private service: CustomerService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.customer.idCustomer = this.route.snapshot.paramMap.get('id');
+    this.findById();
+  }
 
   customer: Customer = {
     idCustomer: '',
@@ -40,7 +44,6 @@ export class CustomerCreateComponent implements OnInit {
   // Instrução de como deve ser a validação de cada campo
   firstNameCustomer: FormControl = new FormControl(null, Validators.minLength(3));
   lastNameCustomer: FormControl = new FormControl(null, Validators.minLength(3));
-  //birthdateCustomer: FormControl = new FormControl(null, Validators.required);
   monthlyIncomeCustomer: FormControl = new FormControl(null, Validators.minLength(3));
   cpfCustomer: FormControl = new FormControl(null, Validators.required);
   emailCustomer: FormControl = new FormControl(null, Validators.email);
@@ -66,28 +69,26 @@ export class CustomerCreateComponent implements OnInit {
     this.hide = !this.hide;
   }
 
-  // Função que chama o endpoint create passando os dados dos campos
-  createCustomer() {
-
+  // Função que chama o endpoint create ou update passando os dados dos campos
+  saveCustomer() {
     const datePipe = new DatePipe('en-US');
     this.customer.birthdateCustomer = datePipe.transform(this.customer.birthdateCustomer, 'dd/MM/yyyy');
 
-    /*
-      Houve uma mudança no subscribe() para as versões mais recentes do Angular,
-      onde antes não era necessário o {next: , error:}, ou seja, poderia ser 
-      feito diretamente
-    */
-    this.service.create(this.customer).subscribe({
+    const request = this.customer.idCustomer ? this.service.update(this.customer) : this.service.create(this.customer)
+
+    request.subscribe({
       next: () => {
-        this.toast.success('O cliente ' + this.customer.firstNameCustomer + ' ' + this.customer.lastNameCustomer + ' foi cadastrado com sucesso!', 'Cadastro');
-        this.router.navigate(['customer'])
+        const message = this.customer.idCustomer ? 'atualizado' : 'cadastrado';
+
+        this.toast.success('O cliente '+ this.customer.firstNameCustomer +' '+ this.customer.lastNameCustomer +' foi '+ message +'!', 'Sucesso');
+        this.router.navigate(['customer']);
       }, error: ex => {
         if (ex.error.errors) {
           ex.error.errors.forEach(element => {
-            this.toast.error(element.message, 'Erro'); //Aparece o erro feião...
+            this.toast.error(element.message, 'Erro');
           });
         } else {
-          this.toast.error(ex.error.message, 'Erro'); //Aparece o erro feião...
+          this.toast.error(ex.error.message, 'Erro');
         }
       }
     })
@@ -103,4 +104,12 @@ export class CustomerCreateComponent implements OnInit {
     this.customer.emailCustomer = '';
     this.customer.passwordCustomer = '';
   }
+
+  //
+  findById(): void {
+    this.service.findById(this.customer.idCustomer).subscribe(resposta => {
+      this.customer = resposta['result'];
+    })
+  }
+
 }

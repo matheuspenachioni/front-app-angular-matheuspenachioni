@@ -13,7 +13,7 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
 
   findById(idCustomer: any): Observable<Customer> {
-    return this.http.get<Customer>(`${API_CONFIG.customerUrl}/findProduct/${idCustomer}`);
+    return this.http.get<Customer>(`${API_CONFIG.customerUrl}/findCustomer/${idCustomer}`);
   }
 
   findAll(): Observable<Customer[]> {

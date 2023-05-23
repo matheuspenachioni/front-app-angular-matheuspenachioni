@@ -1,5 +1,6 @@
 <mat-toolbar color="primary">
-    <span>Novo Cliente</span>
+    <span *ngIf="customer.idCustomer">Atualizar Cliente</span>
+    <span *ngIf="!customer.idCustomer">Novo Cliente</span>
 </mat-toolbar>
 
 <div class="container mat-elevation-z8">
@@ -30,7 +31,7 @@
         <!-- Ainda não é feita a validação de data mínima e data máxima, ou seja, podemos adicionar a data do Boer (01/01/9999 a.C.) -->
         <mat-form-field class="full-width">
             <mat-label>Data de Nascimento</mat-label>
-            <input [(ngModel)]="customer.birthdateCustomer" name="birthdateCustomer" type="date" matInput required />
+            <input [(ngModel)]="customer.birthdateCustomer" [formControl]="customer.birthdateCustomer" name="birthdateCustomer" type="date" matInput required />
             <mat-icon matSuffix>calendar_month</mat-icon>
         </mat-form-field>
 
@@ -59,15 +60,25 @@
         </mat-form-field>
 
         <div class="group-buttons">
-            <button (click)="createCustomer()" [disabled]="!validateFields()" mat-fab extended color="primary"
+            <button (click)="saveCustomer()" [disabled]="!validateFields()" mat-fab extended color="primary"
                 class="form-button">
                 <mat-icon>save</mat-icon>
-                Cadastrar
+                Salvar
             </button>
 
             <button (click)="clearFields()" mat-fab extended color="warn" class="form-button">
                 <mat-icon>rotate_right</mat-icon>
                 Limpar campos
+            </button>
+
+            <button *ngIf="!customer.idCustomer" routerLink="../" mat-fab extended color="warn" class="form-button-full">
+                <mat-icon>cancel</mat-icon>
+                Cancelar
+            </button>
+
+            <button *ngIf="customer.idCustomer" routerLink="../../" mat-fab extended color="warn" class="form-button-full">
+                <mat-icon>cancel</mat-icon>
+                Cancelar
             </button>
         </div>
     </form>

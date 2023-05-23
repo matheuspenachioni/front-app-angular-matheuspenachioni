@@ -5,11 +5,11 @@
 <div class="container">
     <mat-form-field appearance="fill" class="input-search">
         <mat-label>Pesquisar</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Matheus" #input>
+        <input matInput (keyup)="applyFilter($event)" id="search" placeholder="Ex. Matheus" #input>
     </mat-form-field>
 
     <div class="button-group">
-        <button mat-raised-button color="primary" routerLink="add">Novo cliente</button>
+        <button mat-raised-button color="primary" routerLink="save">Novo cliente</button>
         <button mat-raised-button color="primary" routerLink="report">Relatório</button>
     </div>
 
@@ -47,6 +47,13 @@
                 <mat-header-cell *matHeaderCellDef> E-mail </mat-header-cell>
                 <mat-cell *matCellDef="let element" data-label="emailCustomer"> 
                     {{element.emailCustomer}} 
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="acoes">
+                <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="Ações"> 
+                    <button mat-button routerLink="save/{{ element.idCustomer }}"><mat-icon>edit</mat-icon></button>
                 </mat-cell>
             </ng-container>
 
