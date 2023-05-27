@@ -31,7 +31,7 @@
         <!-- Ainda não é feita a validação de data mínima e data máxima, ou seja, podemos adicionar a data do Boer (01/01/9999 a.C.) -->
         <mat-form-field class="full-width">
             <mat-label>Data de Nascimento</mat-label>
-            <input [(ngModel)]="customer.birthdateCustomer" [formControl]="customer.birthdateCustomer" name="birthdateCustomer" type="date" matInput required />
+            <input [(ngModel)]="customer.birthdateCustomer" name="birthdateCustomer" type="date" matInput required />
             <mat-icon matSuffix>calendar_month</mat-icon>
         </mat-form-field>
 

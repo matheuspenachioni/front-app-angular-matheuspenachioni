@@ -109,6 +109,10 @@ export class CustomerCreateComponent implements OnInit {
   findById(): void {
     this.service.findById(this.customer.idCustomer).subscribe(resposta => {
       this.customer = resposta['result'];
+
+      var date = this.customer.birthdateCustomer;
+      var newDate = date.split("/").reverse().join("-");
+      this.customer.birthdateCustomer = newDate;
     })
   }
 
