@@ -53,7 +53,8 @@
             <ng-container matColumnDef="acoes">
                 <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
                 <mat-cell *matCellDef="let element" data-label="Ações"> 
-                    <button mat-button routerLink="save/{{ element.idCustomer }}"><mat-icon>edit</mat-icon></button>
+                    <button mat-icon-button color="primary" routerLink="save/{{ element.idCustomer }}"><mat-icon>edit</mat-icon></button>
+                    <button mat-icon-button color="warn" (click)="deleteCustomer(element)"><mat-icon>delete</mat-icon></button>
                 </mat-cell>
             </ng-container>
 

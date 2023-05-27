@@ -16,6 +16,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog'
 //Outros Imports
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
@@ -32,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomerListComponent } from './screens/customer/customer-list/customer-list.component';
 import { CustomerService } from './services/customer.service';
 import { CustomerCreateComponent } from './screens/customer/customer-create/customer-create.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { CustomerCreateComponent } from './screens/customer/customer-create/cust
     SidenavComponent,
     HomeComponent,
     CustomerListComponent,
-    CustomerCreateComponent
+    CustomerCreateComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +60,7 @@ import { CustomerCreateComponent } from './screens/customer/customer-create/cust
     MatIconModule,
     MatPaginatorModule,
     MatDatepickerModule,
+    MatDialogModule,
     FormsModule, ReactiveFormsModule,
     HttpClientModule,
     DatePipe,
@@ -68,6 +72,9 @@ import { CustomerCreateComponent } from './screens/customer/customer-create/cust
     }),
     NgxMaskDirective, 
     NgxMaskPipe
+  ],
+  exports: [
+    ConfirmationDialogComponent
   ],
   providers: [
     CustomerService,

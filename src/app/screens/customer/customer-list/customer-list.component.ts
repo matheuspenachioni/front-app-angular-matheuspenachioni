@@ -5,6 +5,8 @@ import { Customer } from 'src/app/models/customer';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/services/customer.service';
 import { provideNgxMask } from 'ngx-mask';
+import { ConfirmationDialogComponent } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-customer-list',
@@ -26,7 +28,8 @@ export class CustomerListComponent implements OnInit {
   //Declaração do que será usado
   constructor(
     private toast: ToastrService, 
-    private service: CustomerService
+    private service: CustomerService,
+    private dialog: MatDialog
   ) { }
 
   //Ao abrir o componente será chamada a função que carrega todos os dados
@@ -34,6 +37,7 @@ export class CustomerListComponent implements OnInit {
     this.findAll();
   }
 
+  //
   findAll() {
     this.service.findAll().subscribe({next: response => {
       this.ELEMENT_DATA = response['result'];
@@ -42,6 +46,30 @@ export class CustomerListComponent implements OnInit {
     }, error: () => { //Dispara um erro de qualquer tipo, poderia ser usado uma variável no lugar de () para pegar o erro vindo da API
       this.toast.warning('Nenhum resultado encontrado!', 'Aviso');
     } })
+  }
+
+  //
+  deleteCustomer(customer): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: 'Você realmente quer deletar esse cliente?',
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.service.delete(customer.idCustomer).subscribe(() => {
+          this.toast.success('O cliente '+ customer.firstNameCustomer +' '+ customer.lastNameCustomer +' foi deletado!', 'Sucesso');
+          this.findAll();
+        }, ex => {
+          if (ex.error.errors) {
+            ex.error.errors.forEach(element => {
+              this.toast.error(element.message);
+            });
+          } else {
+            this.toast.error(ex.error.message);
+          }
+        })
+      }
+    })
   }
 
   //Filtro de busca que é disparado assim que uma tecla é apertada no input de id "search" e insere os dados achados na tabela
