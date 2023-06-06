@@ -1,0 +1,59 @@
+.container {
+    width: 35%;
+    margin: auto;
+    margin-top: .8rem;
+    padding: 1rem;
+    border-radius: .6rem;
+}
+
+.text-center {
+    text-align: center;
+}
+.full-width {
+    width: 100%;
+}
+
+mat-divider {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-button {
+    width: 49%;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+.form-button-full {
+    width: 100%;
+    margin-top: .5rem;
+}
+
+.password-visibility {
+    cursor: pointer;
+}
+
+.money-prefix {
+    position: relative; 
+    bottom: 0;
+    right: .3rem;
+}
+
+@media screen and (max-width: 800px) {
+    .container {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1140px) {
+    .form-button {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

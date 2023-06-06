@@ -1,0 +1,41 @@
+<mat-toolbar color="primary">
+    <span>Novo Categoria</span>
+</mat-toolbar>
+
+<div class="container mat-elevation-z8">
+    <h1 class="text-center">Preencha todos os campos</h1>
+    <mat-divider></mat-divider>
+    <form>
+        <mat-form-field class="full-width">
+            <mat-label>Nome</mat-label>
+            <input [(ngModel)]="category.name" [formControl]="name" name="name"
+                matInput placeholder="Ex. Matheus" required />
+                <mat-icon matSuffix> text_fields</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Descrição</mat-label>
+            <input [(ngModel)]="category.description" [formControl]="description" name="description"
+                matInput placeholder="Ex. Penachioni" required />
+                <mat-icon matSuffix> short_text</mat-icon>
+        </mat-form-field>
+
+        <div class="group-buttons">
+            <button (click)="saveCategory()" [disabled]="!validateFields()" mat-fab extended color="primary"
+                class="form-button">
+                <mat-icon>save</mat-icon>
+                Salvar
+            </button>
+
+            <button (click)="clearFields()" mat-fab extended color="warn" class="form-button">
+                <mat-icon>rotate_right</mat-icon>
+                Limpar campos
+            </button>
+
+            <button routerLink="{{this.category.id ? '../../' : '../'}}" mat-fab extended color="warn" class="form-button-full">
+                <mat-icon>cancel</mat-icon>
+                Cancelar
+            </button>
+        </div>
+    </form>
+</div>

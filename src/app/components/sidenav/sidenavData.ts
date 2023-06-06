@@ -10,8 +10,13 @@ export const sidenavData = [
         label: 'Produtos'
     },
     {
+        routerLink: 'category',
+        icon: 'fal fa-tags',
+        label: 'Categorias'
+    },
+    {
         routerLink: 'customer',
         icon: 'fal fa-user',
         label: 'Clientes'
-    }
+    },
 ];

@@ -1,0 +1,55 @@
+<mat-toolbar color="primary">
+    <span>Novo Produto</span>
+</mat-toolbar>
+
+<div class="container mat-elevation-z8">
+    <h1 class="text-center">Preencha todos os campos</h1>
+    <mat-divider></mat-divider>
+    <form>
+        <mat-form-field class="full-width">
+            <mat-label>Nome</mat-label>
+            <input [(ngModel)]="product.name" [formControl]="name" name="name" matInput placeholder="Ex. Matheus" required />
+                <mat-icon matSuffix> text_fields</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <span matTextPrefix class="money-prefix">R$</span>
+            <mat-label>Preço</mat-label>
+            <input [(ngModel)]="product.price" [formControl]="price" name="price" type="number" matInput placeholder="Ex. 2.000" required />
+            <mat-icon matSuffix>paid</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Quantidade</mat-label>
+            <input [(ngModel)]="product.amount" [formControl]="amount" name="price" type="number" matInput placeholder="Ex. 12" required />
+            <mat-icon matSuffix>paid</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <mat-label>Categorias</mat-label>
+            <mat-select [(ngModel)]="selectedCategories" [formControl]="categories" multiple [compareWith]="compareCategories">
+                <mat-option *ngFor="let category of allCategories" [value]="category">
+                    {{ category.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="group-buttons">
+            <button (click)="saveProduct()" [disabled]="!validateFields()" mat-fab extended color="primary"
+                class="form-button">
+                <mat-icon>save</mat-icon>
+                Salvar
+            </button>
+
+            <button (click)="clearFields()" mat-fab extended color="warn" class="form-button">
+                <mat-icon>rotate_right</mat-icon>
+                Limpar campos
+            </button>
+
+            <button routerLink="{{this.product.id ? '../../' : '../'}}" mat-fab extended color="warn" class="form-button-full">
+                <mat-icon>cancel</mat-icon>
+                Cancelar
+            </button>
+        </div>
+    </form>
+</div>

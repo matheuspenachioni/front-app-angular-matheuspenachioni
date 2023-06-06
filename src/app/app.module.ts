@@ -16,7 +16,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDialogModule } from '@angular/material/dialog'
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 //Outros Imports
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
@@ -34,6 +35,12 @@ import { CustomerListComponent } from './screens/customer/customer-list/customer
 import { CustomerService } from './services/customer.service';
 import { CustomerCreateComponent } from './screens/customer/customer-create/customer-create.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+//
+import { ProductListComponent } from './screens/product/product-list/product-list.component';
+import { ProductCreateComponent } from './screens/product/product-create/product-create.component';
+//
+import { CategoryListComponent } from './screens/category/category-list/category-list.component';
+import { CategoryCreateComponent } from './screens/category/category-create/category-create.component';
 
 
 @NgModule({
@@ -44,7 +51,11 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     HomeComponent,
     CustomerListComponent,
     CustomerCreateComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ProductListComponent,
+    ProductCreateComponent,
+    CategoryListComponent,
+    CategoryCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +72,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     MatPaginatorModule,
     MatDatepickerModule,
     MatDialogModule,
+    MatSelectModule,
     FormsModule, ReactiveFormsModule,
     HttpClientModule,
     DatePipe,
