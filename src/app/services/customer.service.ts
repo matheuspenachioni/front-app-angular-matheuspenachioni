@@ -12,24 +12,24 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-  findById(idCustomer: any): Observable<Customer> {
-    return this.http.get<Customer>(`${API_CONFIG.customerUrl}/findCustomer/${idCustomer}`);
+  findById(id: any): Observable<Customer> {
+    return this.http.get<Customer>(`${API_CONFIG.customerUrl}/${id}`);
   }
 
   findAll(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(`${API_CONFIG.customerUrl}/list`);
+    return this.http.get<Customer[]>(`${API_CONFIG.customerUrl}`);
   }
 
-  create(customer: Customer): Observable<Customer[]> {
-    return this.http.post<Customer[]>(`${API_CONFIG.customerUrl}/create`, customer);
+  save(customer: Customer): Observable<Customer[]> {
+    return this.http.post<Customer[]>(`${API_CONFIG.customerUrl}/save`, customer);
   }
 
-  update(customer: Customer): Observable<Customer[]> {
-    return this.http.put<Customer[]>(`${API_CONFIG.customerUrl}/update`, customer);
+  delete(id: any): Observable<Customer> {
+    return this.http.delete<Customer>(`${API_CONFIG.customerUrl}/${id}`);
   }
 
-  delete(idCustomer: any): Observable<Customer> {
-    return this.http.delete<Customer>(`${API_CONFIG.customerUrl}/delete/${idCustomer}`);
+  report(): Observable<any> {
+    return this.http.get(`${API_CONFIG.customerUrl}/report`, {  observe: 'response', responseType: 'text'});
   }
 
 }

@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    <span>Novo Categoria</span>
+    <span>{{ category.id ? 'Atualizar Categoria' : 'Novo Categoria' }}</span>
 </mat-toolbar>
 
 <div class="container mat-elevation-z8">
@@ -9,14 +9,14 @@
         <mat-form-field class="full-width">
             <mat-label>Nome</mat-label>
             <input [(ngModel)]="category.name" [formControl]="name" name="name"
-                matInput placeholder="Ex. Matheus" required />
+                matInput placeholder="Ex. Ferramentas" required />
                 <mat-icon matSuffix> text_fields</mat-icon>
         </mat-form-field>
 
         <mat-form-field class="full-width">
             <mat-label>Descrição</mat-label>
             <input [(ngModel)]="category.description" [formControl]="description" name="description"
-                matInput placeholder="Ex. Penachioni" required />
+                matInput placeholder="Ex. Ferramentas elétricas ou manuais" required />
                 <mat-icon matSuffix> short_text</mat-icon>
         </mat-form-field>
 

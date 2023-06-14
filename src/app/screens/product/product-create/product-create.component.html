@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    <span>Novo Produto</span>
+    <span>{{ product.id ? 'Atualizar Produto' : 'Novo Produto' }}</span>
 </mat-toolbar>
 
 <div class="container mat-elevation-z8">
@@ -8,7 +8,7 @@
     <form>
         <mat-form-field class="full-width">
             <mat-label>Nome</mat-label>
-            <input [(ngModel)]="product.name" [formControl]="name" name="name" matInput placeholder="Ex. Matheus" required />
+            <input [(ngModel)]="product.name" [formControl]="name" name="name" matInput placeholder="Ex. Rebimboca da Parafuseta" required />
                 <mat-icon matSuffix> text_fields</mat-icon>
         </mat-form-field>
 

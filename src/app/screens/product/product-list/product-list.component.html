@@ -44,11 +44,11 @@
             </ng-container>
 
             <ng-container matColumnDef="categoriesProduct">
-                <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
-                <mat-cell *matCellDef="let element" data-label="Categoria">
+                <mat-header-cell *matHeaderCellDef> Categoria(s) </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="Categoria(s)">
                   <ng-container *ngIf="element.categories">
                       <span *ngFor="let category of element.categories">
-                        {{ category.name }},&nbsp;
+                        • {{ category.name }}
                       </span>
                   </ng-container>
                 </mat-cell>

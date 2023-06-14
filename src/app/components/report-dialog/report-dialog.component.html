@@ -1,0 +1,9 @@
+<div mat-dialog-title>
+    Visualização de Relatório
+</div>
+<div mat-dialog-content>
+    <iframe [src]="safeDataUrl" style="width: 100%; height: 500px;"></iframe>
+</div>
+<div mat-dialog-actions>
+    <button mat-button color="primary" (click)="onConfirm(false)">Fechar</button>
+</div>

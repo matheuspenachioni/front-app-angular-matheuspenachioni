@@ -9,51 +9,51 @@
     </mat-form-field>
 
     <div class="button-group">
-        <button mat-raised-button color="primary" routerLink="save">Novo cliente</button>
-        <button mat-raised-button color="primary" routerLink="report">Relatório</button>
+        <button mat-raised-button color="primary" routerLink="save"><i class="fal fa-save"></i> Novo cliente</button>
+        <button mat-raised-button color="primary" (click)="report()"><i class="fal fa-file-pdf"></i> Gerar relatório</button>
     </div>
 
     <div class="mat-elevation-z8">
         <mat-table class="mat-table" [dataSource]="dataSource" matTableResponsive>
             <ng-container matColumnDef="idCustomer">
                 <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-                <mat-cell *matCellDef="let element" data-label="idCustomer">
-                    #{{element.idCustomer}}
+                <mat-cell *matCellDef="let element" data-label="ID">
+                    #{{element.id}}
                 </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="firstNameCustomer">
+            <ng-container matColumnDef="nameCustomer">
                 <mat-header-cell *matHeaderCellDef> Nome Completo </mat-header-cell>
-                <mat-cell *matCellDef="let element" data-label="firstNameCustomer">
-                    {{element.firstNameCustomer}} {{element.lastNameCustomer}}
+                <mat-cell *matCellDef="let element" data-label="Nome Completo">
+                    {{element.firstName}} {{element.lastName}}
                 </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="cpfCustomer">
                 <mat-header-cell *matHeaderCellDef> CPF </mat-header-cell>
-                <mat-cell *matCellDef="let element" data-label="cpfCustomer"> 
-                    {{ element.cpfCustomer | mask: '000.000.000-00' }} 
-                </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="monthlyIncomeCustomer">
-                <mat-header-cell *matHeaderCellDef> Renda Mensal </mat-header-cell>
-                <mat-cell *matCellDef="let element" data-label="monthlyIncomeCustomer">
-                    R$ {{element.monthlyIncomeCustomer}} 
+                <mat-cell *matCellDef="let element" data-label="CPF"> 
+                    {{ element.cpf | mask: '000.000.000-00' }} 
                 </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="emailCustomer">
                 <mat-header-cell *matHeaderCellDef> E-mail </mat-header-cell>
-                <mat-cell *matCellDef="let element" data-label="emailCustomer"> 
-                    {{element.emailCustomer}} 
+                <mat-cell *matCellDef="let element" data-label="E-mail"> 
+                    {{element.email}} 
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="statusCustomer">
+                <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+                <mat-cell *matCellDef="let element" data-label="Status"> 
+                    <mat-icon>{{element.status ? 'done' : 'cancel'}}</mat-icon> ativo
                 </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="acoes">
                 <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
                 <mat-cell *matCellDef="let element" data-label="Ações"> 
-                    <button mat-icon-button color="primary" routerLink="save/{{ element.idCustomer }}"><mat-icon>edit</mat-icon></button>
+                    <button mat-icon-button color="primary" routerLink="save/{{ element.id }}"><mat-icon>edit</mat-icon></button>
                     <button mat-icon-button color="warn" (click)="deleteCustomer(element)"><mat-icon>delete</mat-icon></button>
                 </mat-cell>
             </ng-container>

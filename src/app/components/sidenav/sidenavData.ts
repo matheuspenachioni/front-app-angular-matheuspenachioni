@@ -18,5 +18,5 @@ export const sidenavData = [
         routerLink: 'customer',
         icon: 'fal fa-user',
         label: 'Clientes'
-    },
+    }
 ];

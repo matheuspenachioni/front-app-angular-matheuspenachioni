@@ -24,63 +24,53 @@ export class CustomerCreateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.customer.idCustomer = this.route.snapshot.paramMap.get('id');
+    this.customer.id = this.route.snapshot.paramMap.get('id');
     this.findById();
   }
 
   customer: Customer = {
-    idCustomer: '',
-    firstNameCustomer: '',
-    lastNameCustomer: '',
-    birthdateCustomer: '',
-    dateCreatedCustomer: '',
-    monthlyIncomeCustomer: '',
-    cpfCustomer: '',
-    emailCustomer: '',
-    passwordCustomer: '',
-    statusCustomer: true
+    id: '',
+    firstName: '',
+    lastName: '',
+    birthdate: '',
+    dateCreated: '',
+    dateUpdated: '',
+    cpf: '',
+    email: '',
+    password: '',
+    status: true
   }
 
-  // Instrução de como deve ser a validação de cada campo
-  firstNameCustomer: FormControl = new FormControl(null, Validators.minLength(3));
-  lastNameCustomer: FormControl = new FormControl(null, Validators.minLength(3));
-  monthlyIncomeCustomer: FormControl = new FormControl(null, Validators.minLength(3));
-  cpfCustomer: FormControl = new FormControl(null, Validators.required);
-  emailCustomer: FormControl = new FormControl(null, Validators.email);
-  passwordCustomer: FormControl = new FormControl(null, Validators.minLength(3));
+  firstName: FormControl = new FormControl(null, Validators.minLength(3));
+  lastName: FormControl = new FormControl(null, Validators.minLength(3));
+  monthlyIncome: FormControl = new FormControl(null, Validators.minLength(3));
+  cpf: FormControl = new FormControl(null, Validators.required);
+  email: FormControl = new FormControl(null, Validators.email);
+  password: FormControl = new FormControl(null, Validators.minLength(3));
 
-  // Função que verifica se os campos estão validados
   validateFields(): boolean {
-    return this.firstNameCustomer.valid &&
-      this.lastNameCustomer.valid &&
-      //O botão não desbloqueia com a validação de data kkk
-      //this.customer.birthdateCustomer.valid &&
-      //E aqui não é aceito o .valid, ainda pensarei em como arrumar ambos
-      //this.customer.monthlyIncomeCustomer.valid &&
-      this.cpfCustomer.valid &&
-      this.emailCustomer.valid &&
-      this.passwordCustomer.valid
+    return this.firstName.valid &&
+      this.lastName.valid &&
+      this.cpf.valid &&
+      this.email.valid &&
+      this.password.valid
   }
 
-  // Mostrar/Ocultar senha
   hide: boolean = true;
 
   toggleVisibility() {
     this.hide = !this.hide;
   }
 
-  // Função que chama o endpoint create ou update passando os dados dos campos
-  saveCustomer() {
+  save() {
     const datePipe = new DatePipe('en-US');
-    this.customer.birthdateCustomer = datePipe.transform(this.customer.birthdateCustomer, 'dd/MM/yyyy');
+    this.customer.birthdate = datePipe.transform(this.customer.birthdate, 'dd/MM/yyyy');
 
-    const request = this.customer.idCustomer ? this.service.update(this.customer) : this.service.create(this.customer)
-
-    request.subscribe({
+    this.service.save(this.customer).subscribe({
       next: () => {
-        const message = this.customer.idCustomer ? 'atualizado' : 'cadastrado';
+        const message = this.customer.id ? 'atualizado' : 'cadastrado';
 
-        this.toast.success('O cliente '+ this.customer.firstNameCustomer +' '+ this.customer.lastNameCustomer +' foi '+ message +'!', 'Sucesso');
+        this.toast.success('O cliente '+ this.customer.firstName +' '+ this.customer.lastName +' foi '+ message +'!', 'Sucesso');
         this.router.navigate(['customer']);
       }, error: ex => {
         if (ex.error.errors) {
@@ -94,25 +84,22 @@ export class CustomerCreateComponent implements OnInit {
     })
   }
 
-  // Função para limpar todos os campos
   clearFields() {
-    this.customer.firstNameCustomer = '';
-    this.customer.lastNameCustomer = '';
-    this.customer.birthdateCustomer = '';
-    this.customer.monthlyIncomeCustomer = '';
-    this.customer.cpfCustomer = '';
-    this.customer.emailCustomer = '';
-    this.customer.passwordCustomer = '';
+    this.customer.firstName = '';
+    this.customer.lastName = '';
+    this.customer.birthdate = '';
+    this.customer.cpf = '';
+    this.customer.email = '';
+    this.customer.password = '';
   }
 
-  //
   findById(): void {
-    this.service.findById(this.customer.idCustomer).subscribe(resposta => {
+    this.service.findById(this.customer.id).subscribe(resposta => {
       this.customer = resposta['result'];
 
-      var date = this.customer.birthdateCustomer;
+      var date = this.customer.birthdate;
       var newDate = date.split("/").reverse().join("-");
-      this.customer.birthdateCustomer = newDate;
+      this.customer.birthdate = newDate;
     })
   }
 

@@ -27,20 +27,17 @@ import { NgxMaskDirective, NgxMaskPipe, NgxMaskService } from 'ngx-mask'
 //Imports para os Components
 import { BodyComponent } from './components/body/body.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-//Imports para as Screens
 import { HomeComponent } from './screens/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//Imports para Customer
 import { CustomerListComponent } from './screens/customer/customer-list/customer-list.component';
 import { CustomerService } from './services/customer.service';
 import { CustomerCreateComponent } from './screens/customer/customer-create/customer-create.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
-//
 import { ProductListComponent } from './screens/product/product-list/product-list.component';
 import { ProductCreateComponent } from './screens/product/product-create/product-create.component';
-//
 import { CategoryListComponent } from './screens/category/category-list/category-list.component';
 import { CategoryCreateComponent } from './screens/category/category-create/category-create.component';
+import { ReportDialogComponent } from './components/report-dialog/report-dialog.component';
 
 
 @NgModule({
@@ -55,7 +52,8 @@ import { CategoryCreateComponent } from './screens/category/category-create/cate
     ProductListComponent,
     ProductCreateComponent,
     CategoryListComponent,
-    CategoryCreateComponent
+    CategoryCreateComponent,
+    ReportDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +84,8 @@ import { CategoryCreateComponent } from './screens/category/category-create/cate
     NgxMaskPipe
   ],
   exports: [
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ReportDialogComponent
   ],
   providers: [
     CustomerService,
